@@ -16,7 +16,7 @@ class Gender(str, Enum):
 class Role(str, Enum):
     admin = "admin"
     user = "user"
-    as_admin = "assitant admin"
+    as_admin = "assistant admin"
 
 class User(BaseModel):
     id: Optional[UUID] = uuid4()
@@ -91,47 +91,12 @@ def post_data(data: Data):
     #     data.price = 0
     return data
 
-# @app.post("/postdata/")
-# def post_data():
-#     return
-
 @app.get("/parameter/{input_string}")
 def get_parameter(input_string: str):
     return {"Parameter": input_string}
-
-# 4. Start the API application (on command line)
-# !uvicorn main:app --reload
-
-
-# "... = None" makes the queries optional, not required
-# Optional[str] = None === Union[str, None] = None
 
 @app.get("/queries/")
 def get_queries(a: Optional[str] = None, b: Optional[str] = None, c: Optional[str] = None):
     return {"a": a,
             "b": b,
             "c": c,}
-
-# @app.post("/")
-# def post_root():
-#     return {"Hello": "World"}
-
-# @app.get("/test/")
-# def read_test():
-#     return {"foo": "bar"}
-
-# @app.post("/posttest/")
-# def read_testpost():
-#     return {"foo": "bar"}
-
-# @app.get("/items/{item_id}")
-# def read_item(item_id: int, q: Union[str, None] = None):
-#     return {"item_id": item_id, "q": q}
-
-# @app.post("/items/{item_id}")
-# def newdoc(item_id: int, q: Union[str, None] = None):
-#     return {"item_id": item_id, "q": q}
-
-# @app.post("/add")
-# def add_points(item: Item):
-#     return item
